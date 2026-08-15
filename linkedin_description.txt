@@ -1,8 +1,0 @@
-SIMD-Accelerated Options Arbitrage Scanner — C++20 / AVX2 / Pybind11
-Feb 2026 – Present
-
-Personal research project building a low-latency options pricing engine in C++20 to identify mispriced contracts across live options chains using Monte Carlo simulation and the Heston Stochastic Volatility Model.
-
-Engineered a zero-allocation pricing loop by pre-allocating all simulation buffers and substituting standard PRNGs with a custom Xoshiro256++ implementation. Vectorized the core Euler-Maruyama discretization step using AVX2 SIMD intrinsics (<immintrin.h>) to process 8 price paths per CPU cycle, achieving a 1.6x speedup over scalar execution. The backend is bound to Python via Pybind11, powering a real-time dashboard that flags arbitrage opportunities when market asks drop below theoretical fair value.
-
-Currently testing against a synthetic market data stream simulating 50+ strike prices per tick. Primary focus has been on bare-metal optimization and ensuring the variance truncation scheme avoids branch mispredictions in the vectorized inner loop.
